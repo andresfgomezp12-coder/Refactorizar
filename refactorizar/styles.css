@@ -1,0 +1,149 @@
+/* 
+   VARIABLES CSS
+   Antes del refactor estos colores estaban repetidos
+   directamente como valores hexadecimales por todo el
+   archivo. Conteo de repeticiones en el código original:
+
+    */
+:root {
+    --color-fondo-oscuro: #0a0a12;
+    --color-rosa-neon: #ff007f;
+    --color-cian-neon: #00f0ff;
+    --color-blanco: #ffffff;
+    --color-azul-oscuro: #1a1a2e;
+}
+
+/* 
+   Por defecto el navegador usa content-box: el
+   "width" que se define solo aplica al contenido,
+   y el padding y el border se SUMAN por fuera,
+   agrandando la caja real.
+   Con border-box, el padding y el border quedan
+   INCLUIDOS dentro del "width" declarado, así que
+   el tamaño final de la caja es predecible.
+
+    */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: var(--color-fondo-oscuro);
+    color: var(--color-blanco);
+}
+
+header {
+    background-color: var(--color-rosa-neon);
+    padding: 20px;
+}
+
+nav a {
+    color: var(--color-blanco);
+    margin-right: 15px;
+    text-decoration: none;
+}
+
+/* Estado :hover: le da retroalimentación visual a
+   quien usa mouse cuando pasa por encima del enlace. */
+nav a:hover {
+    color: var(--color-cian-neon);
+    text-decoration: underline;
+}
+
+
+nav a:focus {
+    color: var(--color-cian-neon);
+    text-decoration: underline;
+    outline: 2px solid var(--color-cian-neon);
+    outline-offset: 2px;
+}
+
+h2 {
+    color: var(--color-cian-neon);
+    border-bottom: 2px solid var(--color-cian-neon);
+}
+
+.tarjeta {
+    border: 2px solid var(--color-rosa-neon);
+    padding: 15px;
+    margin-bottom: 10px;
+    width: 300px;
+}
+
+#destacado {
+    background-color: var(--color-azul-oscuro);
+}
+
+table {
+    border-collapse: collapse;
+}
+
+td,
+th {
+    border: 1px solid var(--color-cian-neon);
+    padding: 8px;
+}
+
+footer {
+    background-color: var(--color-rosa-neon);
+    color: var(--color-blanco);
+    padding: 20px;
+}
+
+/* 
+   Clases nuevas: reemplazan los 9 estilos en línea
+   que estaban repartidos en el HTML.
+   */
+
+.titulo-principal {
+    color: var(--color-cian-neon);
+    margin: 0;
+}
+
+.subtitulo {
+    margin-top: 5px;
+}
+
+.contenido-principal {
+    padding: 20px;
+}
+
+.titulo-tarjeta-cyan {
+    color: var(--color-cian-neon);
+}
+
+.titulo-tarjeta-rosa {
+    color: var(--color-rosa-neon);
+}
+
+.boton-enviar {
+    background-color: var(--color-cian-neon);
+    color: var(--color-fondo-oscuro);
+    padding: 10px 20px;
+    border: none;
+    font-weight: bold;
+}
+
+/* :hover y :focus en el botón, misma lógica que en
+   los enlaces del menú: dar señal visual clara a
+   quien usa mouse Y a quien usa teclado. */
+.boton-enviar:hover {
+    background-color: var(--color-blanco);
+    cursor: pointer;
+}
+
+.boton-enviar:focus {
+    outline: 3px solid var(--color-rosa-neon);
+    outline-offset: 2px;
+}
+
+.footer-texto {
+    margin: 0;
+}
+
+.footer-texto-secundario {
+    margin-top: 5px;
+    color: var(--color-azul-oscuro);
+}
