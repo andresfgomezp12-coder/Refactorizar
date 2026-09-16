@@ -1,0 +1,173 @@
+/* ============================================
+   VARIABLES CSS
+   Antes del refactor estos colores estaban repetidos
+   directamente como valores hexadecimales por todo el
+   archivo. Conteo de repeticiones en el código original:
+
+   #0a0a12 (fondo oscuro)  -> aparecía 2 veces
+   #ff007f (rosa neón)     -> aparecía 5 veces
+   #00f0ff (cian neón)     -> aparecía 6 veces
+   white   (blanco)        -> aparecía 4 veces
+   #1a1a2e (azul oscuro)   -> aparecía 2 veces
+
+   Se reemplazan por variables para tener una sola
+   fuente de verdad: si el rosa neón cambia, se edita
+   en un solo lugar.
+   ============================================ */
+:root {
+    --color-fondo-oscuro: #0a0a12;
+    --color-rosa-neon: #ff007f;
+    --color-cian-neon: #00f0ff;
+    --color-blanco: #ffffff;
+    --color-azul-oscuro: #1a1a2e;
+}
+
+/* ============================================
+   BOX-SIZING
+   Por defecto el navegador usa content-box: el
+   "width" que se define solo aplica al contenido,
+   y el padding y el border se SUMAN por fuera,
+   agrandando la caja real.
+   Con border-box, el padding y el border quedan
+   INCLUIDOS dentro del "width" declarado, así que
+   el tamaño final de la caja es predecible.
+
+   Ejemplo real con .tarjeta (más detalle en el
+   documento explicativo):
+   Antes (content-box):
+     300px (width) + 15px+15px (padding) + 2px+2px (border)
+     = 334px de ancho total renderizado
+   Después (border-box):
+     300px de ancho total renderizado
+     (el contenido interno se reduce a 266px para
+     dejarle espacio al padding y al border)
+   ============================================ */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: var(--color-fondo-oscuro);
+    color: var(--color-blanco);
+}
+
+header {
+    background-color: var(--color-rosa-neon);
+    padding: 20px;
+}
+
+nav a {
+    color: var(--color-blanco);
+    margin-right: 15px;
+    text-decoration: none;
+}
+
+/* Estado :hover: le da retroalimentación visual a
+   quien usa mouse cuando pasa por encima del enlace. */
+nav a:hover {
+    color: var(--color-cian-neon);
+    text-decoration: underline;
+}
+
+/* Estado :focus: da la misma retroalimentación visual
+   pero para quien navega con teclado (Tab) o usa un
+   lector de pantalla. Sin :focus, esas personas no
+   tienen ninguna señal de qué elemento está activo.
+   Es un requisito básico de accesibilidad (WCAG 2.1,
+   criterio 2.4.7 "Focus Visible"). */
+nav a:focus {
+    color: var(--color-cian-neon);
+    text-decoration: underline;
+    outline: 2px solid var(--color-cian-neon);
+    outline-offset: 2px;
+}
+
+h2 {
+    color: var(--color-cian-neon);
+    border-bottom: 2px solid var(--color-cian-neon);
+}
+
+.tarjeta {
+    border: 2px solid var(--color-rosa-neon);
+    padding: 15px;
+    margin-bottom: 10px;
+    width: 300px;
+}
+
+#destacado {
+    background-color: var(--color-azul-oscuro);
+}
+
+table {
+    border-collapse: collapse;
+}
+
+td,
+th {
+    border: 1px solid var(--color-cian-neon);
+    padding: 8px;
+}
+
+footer {
+    background-color: var(--color-rosa-neon);
+    color: var(--color-blanco);
+    padding: 20px;
+}
+
+/* ============================================
+   Clases nuevas: reemplazan los 9 estilos en línea
+   que estaban repartidos en el HTML.
+   ============================================ */
+
+.titulo-principal {
+    color: var(--color-cian-neon);
+    margin: 0;
+}
+
+.subtitulo {
+    margin-top: 5px;
+}
+
+.contenido-principal {
+    padding: 20px;
+}
+
+.titulo-tarjeta-cyan {
+    color: var(--color-cian-neon);
+}
+
+.titulo-tarjeta-rosa {
+    color: var(--color-rosa-neon);
+}
+
+.boton-enviar {
+    background-color: var(--color-cian-neon);
+    color: var(--color-fondo-oscuro);
+    padding: 10px 20px;
+    border: none;
+    font-weight: bold;
+}
+
+/* :hover y :focus en el botón, misma lógica que en
+   los enlaces del menú: dar señal visual clara a
+   quien usa mouse Y a quien usa teclado. */
+.boton-enviar:hover {
+    background-color: var(--color-blanco);
+    cursor: pointer;
+}
+
+.boton-enviar:focus {
+    outline: 3px solid var(--color-rosa-neon);
+    outline-offset: 2px;
+}
+
+.footer-texto {
+    margin: 0;
+}
+
+.footer-texto-secundario {
+    margin-top: 5px;
+    color: var(--color-azul-oscuro);
+}
